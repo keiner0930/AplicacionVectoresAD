@@ -6,6 +6,8 @@
 
 package Interfaz;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author karrieta9
@@ -56,6 +58,13 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel2.setText("Longitud :");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+
+        txtLongitud.setBackground(new java.awt.Color(215, 247, 247));
+        txtLongitud.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtLongitudKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtLongitud, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 50, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 150, 80));
@@ -63,38 +72,55 @@ public class Principal extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        cmdCrear.setBackground(new java.awt.Color(107, 240, 240));
+        cmdCrear.setFont(new java.awt.Font("Monotype Corsiva", 2, 14)); // NOI18N
         cmdCrear.setText("Crear");
-        jPanel3.add(cmdCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 120, -1));
+        cmdCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCrearActionPerformed(evt);
+            }
+        });
+        jPanel3.add(cmdCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 130, -1));
 
+        cmdLlenarManual.setBackground(new java.awt.Color(107, 240, 240));
+        cmdLlenarManual.setFont(new java.awt.Font("Monotype Corsiva", 2, 14)); // NOI18N
         cmdLlenarManual.setText("Llenar Manual");
         cmdLlenarManual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdLlenarManualActionPerformed(evt);
             }
         });
-        jPanel3.add(cmdLlenarManual, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 120, -1));
+        jPanel3.add(cmdLlenarManual, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 130, -1));
 
+        cmdLlenarAutomatico.setBackground(new java.awt.Color(107, 240, 240));
+        cmdLlenarAutomatico.setFont(new java.awt.Font("Monotype Corsiva", 2, 14)); // NOI18N
         cmdLlenarAutomatico.setText("Llenar Automatico");
-        jPanel3.add(cmdLlenarAutomatico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
+        jPanel3.add(cmdLlenarAutomatico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 130, -1));
 
+        cmdMostrar.setBackground(new java.awt.Color(107, 240, 240));
+        cmdMostrar.setFont(new java.awt.Font("Monotype Corsiva", 2, 14)); // NOI18N
         cmdMostrar.setText("Mostrar");
-        jPanel3.add(cmdMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 120, -1));
+        jPanel3.add(cmdMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 130, -1));
 
+        cmdBorrar.setBackground(new java.awt.Color(107, 240, 240));
+        cmdBorrar.setFont(new java.awt.Font("Monotype Corsiva", 2, 14)); // NOI18N
         cmdBorrar.setText("Borrar");
-        jPanel3.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 120, -1));
+        jPanel3.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 130, -1));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 140, 190));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 150, 190));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultado"));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        txtResultado.setEditable(false);
+        txtResultado.setBackground(new java.awt.Color(215, 247, 247));
         txtResultado.setColumns(20);
         txtResultado.setRows(5);
         jScrollPane1.setViewportView(txtResultado);
 
-        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 240, 120));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 200, 130));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 260, 150));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,7 +130,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
         );
 
         pack();
@@ -113,6 +139,29 @@ public class Principal extends javax.swing.JFrame {
     private void cmdLlenarManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenarManualActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmdLlenarManualActionPerformed
+
+    private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
+    if(txtLongitud.getText().trim().isEmpty()){
+        JOptionPane.showMessageDialog(this,"Digite la Longitud" ,"Error ",JOptionPane.ERROR_MESSAGE);
+        txtLongitud.requestFocusInWindow();   
+    }
+    else if(txtLongitud.getText().trim().equals("0")){
+    JOptionPane.showMessageDialog(this,"La logitud no puede ser cero(0)","Error",JOptionPane.ERROR_MESSAGE);
+    txtLongitud.requestFocusInWindow();
+    txtLongitud.selectAll();
+    }
+    
+    
+    
+    }//GEN-LAST:event_cmdCrearActionPerformed
+
+    private void txtLongitudKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLongitudKeyTyped
+     char c=evt.getKeyChar(); 
+     if(!Character.isDigit(c)) { 
+              getToolkit().beep();  
+              evt.consume();
+     }   
+    }//GEN-LAST:event_txtLongitudKeyTyped
 
     /**
      * @param args the command line arguments
