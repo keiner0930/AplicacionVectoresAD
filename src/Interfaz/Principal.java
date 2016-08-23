@@ -17,6 +17,8 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
+    
+    double v[];
     public Principal() {
         initComponents();
     }
@@ -95,16 +97,31 @@ public class Principal extends javax.swing.JFrame {
         cmdLlenarAutomatico.setBackground(new java.awt.Color(107, 240, 240));
         cmdLlenarAutomatico.setFont(new java.awt.Font("Monotype Corsiva", 2, 14)); // NOI18N
         cmdLlenarAutomatico.setText("Llenar Automatico");
+        cmdLlenarAutomatico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdLlenarAutomaticoActionPerformed(evt);
+            }
+        });
         jPanel3.add(cmdLlenarAutomatico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 130, -1));
 
         cmdMostrar.setBackground(new java.awt.Color(107, 240, 240));
         cmdMostrar.setFont(new java.awt.Font("Monotype Corsiva", 2, 14)); // NOI18N
         cmdMostrar.setText("Mostrar");
+        cmdMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdMostrarActionPerformed(evt);
+            }
+        });
         jPanel3.add(cmdMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 130, -1));
 
         cmdBorrar.setBackground(new java.awt.Color(107, 240, 240));
         cmdBorrar.setFont(new java.awt.Font("Monotype Corsiva", 2, 14)); // NOI18N
         cmdBorrar.setText("Borrar");
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
         jPanel3.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 130, -1));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 150, 190));
@@ -137,20 +154,31 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdLlenarManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenarManualActionPerformed
-        // TODO add your handling code here:
+     double n;
+        for(int i=0;i<v.length;i++){
+        n= Double.parseDouble(JOptionPane.showInputDialog(this,"Digite el elemento el la posicion "+i));
+        v[i]= n;        
+        }
+       
     }//GEN-LAST:event_cmdLlenarManualActionPerformed
 
     private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
-    if(txtLongitud.getText().trim().isEmpty()){
+    int Longitud;
+        if(txtLongitud.getText().trim().isEmpty()){
         JOptionPane.showMessageDialog(this,"Digite la Longitud" ,"Error ",JOptionPane.ERROR_MESSAGE);
         txtLongitud.requestFocusInWindow();   
     }
-    else if(txtLongitud.getText().trim().equals("0")){
+    else if(Integer.parseInt(txtLongitud.getText().trim())==0){
     JOptionPane.showMessageDialog(this,"La logitud no puede ser cero(0)","Error",JOptionPane.ERROR_MESSAGE);
     txtLongitud.requestFocusInWindow();
     txtLongitud.selectAll();
     }
+    else{
+    Longitud= Integer.parseInt(txtLongitud.getText());
+    v= new double[Longitud];
+    JOptionPane.showMessageDialog(this,"Vector Creado Exitosamente");
     
+    }
     
     
     }//GEN-LAST:event_cmdCrearActionPerformed
@@ -162,6 +190,33 @@ public class Principal extends javax.swing.JFrame {
               evt.consume();
      }   
     }//GEN-LAST:event_txtLongitudKeyTyped
+
+    private void cmdMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMostrarActionPerformed
+        for (int i = 0; i < v.length; i++) {
+        txtResultado.append(v[i]+"\n");
+        
+        }
+        
+       
+    }//GEN-LAST:event_cmdMostrarActionPerformed
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+     txtLongitud.setText("");
+     txtResultado.setText("");
+     v= null;
+     txtLongitud.requestFocusInWindow();
+    }//GEN-LAST:event_cmdBorrarActionPerformed
+
+    private void cmdLlenarAutomaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenarAutomaticoActionPerformed
+    double n;
+        for(int i=0;i<v.length;i++){
+        n= (int)(Math.random()*50 + 1);
+        v[i]= n;        
+        }
+    JOptionPane.showMessageDialog(this, "Vector Llenado Correctamente");
+        
+        
+    }//GEN-LAST:event_cmdLlenarAutomaticoActionPerformed
 
     /**
      * @param args the command line arguments
